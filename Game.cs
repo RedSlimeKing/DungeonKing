@@ -156,7 +156,7 @@ namespace Our_Game
                         inv.invUI(invs);
                         break;
                     case 'k':
-                        p1.Status();
+                        p1.Status(Pname);
                         Console.ReadKey();
                         break;
                     case 'l':
@@ -189,7 +189,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == (int.Parse(Exy.Substring(0, 2)) - 1) && int.Parse(Mxy[floor][i].Substring(2, 2)) == int.Parse(Exy.Substring(2, 2))))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) - 1 == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = (int.Parse(Exy.Substring(0, 2)) - 1).ToString() + Exy.Substring(2, 2);
                     }
@@ -212,7 +212,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == int.Parse(Exy.Substring(0, 2)) && int.Parse(Mxy[floor][i].Substring(2, 2)) == (int.Parse(Exy.Substring(2, 2)) - 1)))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) - 1 == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) - 1).ToString();
                     }
@@ -235,7 +235,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == (int.Parse(Exy.Substring(0, 2)) + 1) && int.Parse(Mxy[floor][i].Substring(2, 2)) == int.Parse(Exy.Substring(2, 2))))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) + 1 == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = (int.Parse(Exy.Substring(0, 2)) + 1).ToString() + Exy.Substring(2, 2);
                     }
@@ -258,7 +258,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == int.Parse(Exy.Substring(0, 2)) && int.Parse(Mxy[floor][i].Substring(2, 2)) == (int.Parse(Exy.Substring(2, 2)) + 1)))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) + 1 == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) + 1).ToString();
                     }
