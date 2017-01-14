@@ -105,11 +105,11 @@ namespace Our_Game
                 {
                     if (world[(Px + 1), Py] == "B")
                         world[(Px + 1), Py] = "N";
-                    if (world[(Px - 1), Py] == "B")
+                    else if (world[(Px - 1), Py] == "B")
                         world[(Px - 1), Py] = "N";
-                    if (world[Px, (Py + 1)] == "B")
+                    else if (world[Px, (Py + 1)] == "B")
                         world[Px, (Py + 1)] = "N";
-                    if (world[Px, (Py - 1)] == "B")
+                    else if (world[Px, (Py - 1)] == "B")
                         world[Px, (Py - 1)] = "N";
                 }
             }
