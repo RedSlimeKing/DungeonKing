@@ -12,7 +12,7 @@ namespace Our_Game
         int maxhp = 10;
         string name;
         public static int def;
-        static int currhp;
+        public int currhp;
 
         Weapon Weap = new Weapon();
         Equipment equip1 = new HeadGear(1), equip2 = new UpperBodyGear(3), equip3 = new LowerBodyGear(2), equip4 = new Accessory(4);
@@ -24,7 +24,6 @@ namespace Our_Game
             currHp = MaxHealth;
             PDamage = dmg + Weap.Damage;
         }
-
         //get sets
         public string Name
         {
@@ -37,20 +36,17 @@ namespace Our_Game
             get { return maxhp; }
             set { maxhp = value; }
         }
-
-        public static int currHp
+        public int currHp
         {
             get { return currhp; }
             set { currhp = value; }
         }
-
         public static int PDamage
         {
             get { return dmg; }
             set { dmg = value; }
         }
-
-        // methods
+        //combat methods
         public void Combat(List<string[,]> Items)
         {
             Console.WriteLine("What move would you like to do?");
@@ -98,14 +94,12 @@ namespace Our_Game
 
             }
         }
-
         public void Defend()
         {
             Console.Clear();
             Console.WriteLine("You prepare to block!");
             def++;
         }
-
         public void UsePotion(List<string[,]> Items)
         {
 
@@ -131,9 +125,9 @@ namespace Our_Game
         }
         public static void ReceiveDamage(int amount)
         {
-            Player.currHp -= amount;
+            currHp -= amount;
         }
-        public void Status()
+        public void Status(string name)
         {
             /*
                 Player Name:        Kevin
