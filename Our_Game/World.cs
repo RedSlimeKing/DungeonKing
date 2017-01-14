@@ -21,6 +21,7 @@ namespace Our_Game
              * ^: Stairs Up
              * v: Stairs Down
              * N: NPC
+             * M: Mob
              */
             string[,] world = new string[20, 20]
             {

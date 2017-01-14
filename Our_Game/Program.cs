@@ -76,13 +76,13 @@ namespace Our_Game
                     case '3':
                         i = 1;
                         break;
-                } 
+                }
             }
         }
         static void Delay()
         {
             //5 second delay
-            for(int c = 1 ; c <= 32767; c++ )
+            for (int c = 1; c <= 32767; c++)
                 for (int d = 1; d <= 32767; d++)
                 { }
         }
@@ -95,5 +95,6 @@ namespace Our_Game
             }
             return true;
         }
+
     }
 }

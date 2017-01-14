@@ -164,7 +164,7 @@ namespace Our_Game
                 }
             }
             return tempname;
-        }//come back to
+        }
         private string movement(int direction, string Exy)
         {
             int floor = floori;
@@ -316,5 +316,6 @@ namespace Our_Game
             Console.ReadKey();
             Console.Clear();
         }
+        
     }
 }
