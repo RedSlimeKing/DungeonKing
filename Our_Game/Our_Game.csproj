@@ -45,20 +45,14 @@
   <ItemGroup>
     <Compile Include="Accessory.cs" />
     <Compile Include="Equipment.cs" />
-    <Compile Include="..\..\GitHub\DungeonKing\Game.cs">
-      <Link>Game.cs</Link>
-    </Compile>
+    <Compile Include="Game.cs" />
     <Compile Include="HeadGear.cs" />
     <Compile Include="Inventory.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="LowerBodyGear.cs" />
     <Compile Include="Mob.cs" />
-    <Compile Include="..\..\GitHub\DungeonKing\Player.cs">
-      <Link>Player.cs</Link>
-    </Compile>
-    <Compile Include="..\..\GitHub\DungeonKing\Program.cs">
-      <Link>Program.cs</Link>
-    </Compile>
+    <Compile Include="Player.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpperBodyGear.cs" />
     <Compile Include="Weapon.cs" />

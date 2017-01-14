@@ -4,3 +4,9 @@ C:\Users\fires\OneDrive\Documents\Our_Game\Our_Game\bin\Debug\Our_Game.pdb
 C:\Users\fires\OneDrive\Documents\Our_Game\Our_Game\obj\Debug\Our_Game.exe
 C:\Users\fires\OneDrive\Documents\Our_Game\Our_Game\obj\Debug\Our_Game.pdb
 C:\Users\fires\OneDrive\Documents\Our_Game\Our_Game\obj\Debug\Our_Game.csprojResolveAssemblyReference.cache
+C:\Users\fires\OneDrive\Documents\GitHub\DungeonKing\Our_Game\bin\Debug\Our_Game.exe.config
+C:\Users\fires\OneDrive\Documents\GitHub\DungeonKing\Our_Game\obj\Debug\Our_Game.exe
+C:\Users\fires\OneDrive\Documents\GitHub\DungeonKing\Our_Game\obj\Debug\Our_Game.pdb
+C:\Users\fires\OneDrive\Documents\GitHub\DungeonKing\Our_Game\bin\Debug\Our_Game.exe
+C:\Users\fires\OneDrive\Documents\GitHub\DungeonKing\Our_Game\bin\Debug\Our_Game.pdb
+C:\Users\fires\OneDrive\Documents\GitHub\DungeonKing\Our_Game\obj\Debug\Our_Game.csprojResolveAssemblyReference.cache
