@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +19,7 @@ namespace Our_Game
         int floori = 0;                                                     //what level the player is on
         string Pname;                                                       //Player's name
         Random rand = new Random();                                         //random generator
+        Player p1 = new Player();                                           //player hp
         //--------------------------------------------------------------------------------------------------------------------------------------
         public Game(string pName)//constructor
         {
@@ -115,7 +116,6 @@ namespace Our_Game
                 if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && Stairs[floor] == true && floor + 1 < tempname.Count)
                 { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
                 Console.WriteLine("i: Open Inventory\t\t\t  w\nk: Status Menu\t\t\t\ta   d\n" + textB + "\t\t\t\t  s\n" + textA);
-                Console.WriteLine(wallcount[floor] + " " + (.35 * (temp[floor] + wallcount[floor])) + " " + Mxy[floor].Count);
                 ConsoleKeyInfo choice = Console.ReadKey();
                 if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
                     RandMobSpawn();
@@ -156,7 +156,7 @@ namespace Our_Game
                         inv.invUI(invs);
                         break;
                     case 'k':
-                        p1.Status();
+                        p1.Status(Pname);
                         Console.ReadKey();
                         break;
                     case 'l':
@@ -189,7 +189,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == (int.Parse(Exy.Substring(0, 2)) - 1) && int.Parse(Mxy[floor][i].Substring(2, 2)) == int.Parse(Exy.Substring(2, 2))))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) - 1 == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = (int.Parse(Exy.Substring(0, 2)) - 1).ToString() + Exy.Substring(2, 2);
                     }
@@ -212,7 +212,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == int.Parse(Exy.Substring(0, 2)) && int.Parse(Mxy[floor][i].Substring(2, 2)) == (int.Parse(Exy.Substring(2, 2)) - 1)))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) - 1 == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) - 1).ToString();
                     }
@@ -235,7 +235,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == (int.Parse(Exy.Substring(0, 2)) + 1) && int.Parse(Mxy[floor][i].Substring(2, 2)) == int.Parse(Exy.Substring(2, 2))))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) + 1 == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = (int.Parse(Exy.Substring(0, 2)) + 1).ToString() + Exy.Substring(2, 2);
                     }
@@ -258,7 +258,7 @@ namespace Our_Game
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == int.Parse(Exy.Substring(0, 2)) && int.Parse(Mxy[floor][i].Substring(2, 2)) == (int.Parse(Exy.Substring(2, 2)) + 1)))
                                 detect = false;
-                        if (detect == false)
+                        if (detect == false || (int.Parse(Exy.Substring(0, 2)) == int.Parse(Pxy.Substring(0, 2)) && int.Parse(Exy.Substring(2, 2)) + 1 == int.Parse(Pxy.Substring(2, 2))))
                             break;
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) + 1).ToString();
                     }
@@ -270,7 +270,7 @@ namespace Our_Game
         }
         private bool Combat()
         {
-            Player p1 = new Player();
+            
             Mob m1 = new Mob("slime");
             int t = rand.Next(1, 3);
 
