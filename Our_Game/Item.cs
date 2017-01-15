@@ -41,6 +41,7 @@ namespace Our_Game
                 //sellable items
                 case 11:
                     Name = "Gold Coin";
+                    // Desc = "";
                     Cost = 1;
                     break;
                 case 12:

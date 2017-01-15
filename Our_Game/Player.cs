@@ -15,12 +15,12 @@ namespace Our_Game
         public int currhp;
 
         Weapon Weap = new Weapon();
-        Equipment equip1 = new HeadGear(1), equip2 = new UpperBodyGear(3), equip3 = new LowerBodyGear(2), equip4 = new Accessory(4);
+        Equipment equip1 = new HeadGear(1), equip2 = new UpperBodyGear(1), equip3 = new LowerBodyGear(1), equip4 = new Accessory(1);
 
         public Player()
         {
             Weap.Arsenal("C Long Sword");
-            MaxHealth += equip1.IHP + equip2.IHP + equip3.IHP + equip4.IHP;
+            maxhp += equip1.IHP + equip2.IHP + equip3.IHP + equip4.IHP;
             currHp = MaxHealth;
             PDamage = dmg + Weap.Damage;
         }
@@ -57,8 +57,6 @@ namespace Our_Game
                 ConsoleKeyInfo choice = Console.ReadKey();
                 if (choice.KeyChar == '1' || choice.KeyChar == '2' || choice.KeyChar == '3')
                 {
-                    Console.WriteLine("Test passed");//remove later
-                    
                     def = 0;
                     switch (choice.KeyChar)
                     {

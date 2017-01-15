@@ -17,7 +17,7 @@ namespace Our_Game
         List<bool> Stairs = new List<bool>();                               //if you have stairs
         string Pxy;                                                         //Player cords
         int floori = 0;                                                     //what level the player is on
-        int turn;                                                           //prep for turnbase method
+        //int turn;                                                           //prep for turnbase method
         string Pname;                                                       //Player's name
         Random rand = new Random();                                         //random generator
         //--------------------------------------------------------------------------------------------------------------------------------------
@@ -268,9 +268,10 @@ namespace Our_Game
             }
             return Exy;
         }
+        
         private bool Combat(Player p1)
         {
-            Mob m1 = new Mob("slime");
+            Mob m1 = new Mob();
             int t = rand.Next(1, 3);
 
             Console.Clear();
@@ -311,14 +312,16 @@ namespace Our_Game
             }
             return true;
         }
+        private void respawn(Player p1)
+        {
+            string NPCxy;
+
+        } 
         private void CombatScreen()
         {
             Console.ReadKey();
             Console.Clear();
         }
-        private void TurnBase()
-        {
-
-        } 
+      
     }
 }

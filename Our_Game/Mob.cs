@@ -12,11 +12,12 @@ namespace Our_Game
         string name;
         static int currhp;
         int Potion;
+        
         public static int def;
 
-        public Mob(string _name)
+        public Mob()
         {
-            name = _name;
+            
             dmg = 5;
             currHp = 50;
             Potion = 5;
