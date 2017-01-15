@@ -15,9 +15,9 @@ namespace Our_Game
         List<int> wallcount = new List<int>();                              //How many blocks mined
         List<int> temp = new List<int>();                                   //blocks left to mine
         List<bool> Stairs = new List<bool>();                               //if you have stairs
-        string Pxy;                                                         //Player cords
+        string Pxy, NPCxy;                                                  //Player cords/respawn
         int floori = 0;                                                     //what level the player is on
-        //int turn;                                                           //prep for turnbase method
+        //int turn;                                                         //prep for turnbase method
         string Pname;                                                       //Player's name
         Random rand = new Random();                                         //random generator
         //--------------------------------------------------------------------------------------------------------------------------------------
@@ -36,6 +36,7 @@ namespace Our_Game
             for (int i = 0; i < 20; i++)
                 n3w.Add(bob.WorldGeneration());
             Pxy = bob.RandomLocation(n3w[0]);//makes player spawn on random location on floor 1 with npc near it
+            NPCxy = Pxy;//Get respawn location
             for (int i = 0; i < n3w.Count; i++)
             { wallcount.Add(0); temp.Add(0); Stairs.Add(true); List<string> tempLst = new List<string>(); Mxy.Add(tempLst); }
             return n3w;
@@ -312,9 +313,10 @@ namespace Our_Game
             }
             return true;
         }
-        private void respawn(Player p1)
+        private void respawn(Player p1,int floorR)
         {
-            string NPCxy;
+            floorR = 0;
+            Pxy = NPCxy;
 
         } 
         private void CombatScreen()
