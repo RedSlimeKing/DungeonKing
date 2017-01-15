@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,6 +69,7 @@ namespace Our_Game
             Inventory inv = new Inventory();
             World bob = new World();
             Player p1 = new Player();
+            bool tryme = true;
             for (int floor = floori; floor < tempname.Count;)
             {
                 if (tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "v" || tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "^")
@@ -93,10 +94,7 @@ namespace Our_Game
                         if (Combat(p1) == true)
                             Mxy[floor].Remove(Pxy);
                         else
-                        {
-                            floor = 0;
-                            respawn(p1);
-                        }
+                        { floor = 0; respawn(p1); }
                 }
                 for (int i = 0; i < Mxy[floor].Count; i++)
                 {
@@ -112,62 +110,69 @@ namespace Our_Game
                     {/* mob stays */}
                 }
                 if (tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "v" && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
-                        tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R";
-                Console.Clear();
-                Console.WriteLine("Floor " + (floor + 1));
-                temp[floor] = bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
-                string textA = "\t";
-                string textB = "l: Leave Game";
-                string TempText = "";
-                if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && Stairs[floor] == true && floor + 1 < tempname.Count)
-                { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
-                Console.WriteLine("i: Open Inventory\t\t\t  w\nk: Status Menu\t\t\t\ta   d\n" + textB + "\t\t\t\t  s\n" + textA);
-                ConsoleKeyInfo choice = Console.ReadKey();
-                if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
-                    RandMobSpawn();
-                if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
-                    RandMobSpawn();
-                if (wallcount[floor] >= .8 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 3 && rand.Next(1, 101) <= 30)
-                    RandMobSpawn();
-                switch (choice.KeyChar)
+                    tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R";
+                while (tryme == true)
                 {
-                    case 'w':
-                        Pxy = movement(1, Pxy);
-                        break;
-                    case 'a':
-                        Pxy = movement(2, Pxy);
-                        break;
-                    case 's':
-                        Pxy = movement(3, Pxy);
-                        break;
-                    case 'd':
-                        Pxy = movement(4, Pxy);
-                        break;
-                    case 'S':
-                        if (wallcount[floor] >= .6 && floor + 1 < tempname.Count && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
-                        {
-                            Console.Clear();
-                            Console.WriteLine("Floor " + (floor + 1));
-                            bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
-                            Console.WriteLine("Are you sure you want to place the stairs here?\n\"y\" or \"n\"");
-                            if (Console.ReadKey().KeyChar == 'y' && tempname[floor + 1][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "I")
+                    tryme = false;
+                    Console.Clear();
+                    Console.WriteLine("Floor " + (floor + 1));
+                    temp[floor] = bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
+                    string textA = "\t";
+                    string textB = "l: Leave Game";
+                    string TempText = "";
+                    if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && Stairs[floor] == true && floor + 1 < tempname.Count)
+                    { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
+                    Console.WriteLine("i: Open Inventory\t\t\t  w\nk: Status Menu\t\t\t\ta   d\n" + textB + "\t\t\t\t  s\n" + textA);
+                    ConsoleKeyInfo choice = Console.ReadKey();
+                    if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
+                        RandMobSpawn();
+                    if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
+                        RandMobSpawn();
+                    if (wallcount[floor] >= .8 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 3 && rand.Next(1, 101) <= 30)
+                        RandMobSpawn();
+                    switch (choice.KeyChar)
+                    {
+                        case 'w':
+                            Pxy = movement(1, Pxy);
+                            break;
+                        case 'a':
+                            Pxy = movement(2, Pxy);
+                            break;
+                        case 's':
+                            Pxy = movement(3, Pxy);
+                            break;
+                        case 'd':
+                            Pxy = movement(4, Pxy);
+                            break;
+                        case 'S':
+                            if (wallcount[floor] >= .6 && floor + 1 < tempname.Count && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
                             {
-                                tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "v";
-                                tempname[floor + 1][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "^";
-                                Stairs[floor] = false;
+                                Console.Clear();
+                                Console.WriteLine("Floor " + (floor + 1));
+                                bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
+                                Console.WriteLine("Are you sure you want to place the stairs here?\n\"y\" or \"n\"");
+                                if (Console.ReadKey().KeyChar == 'y' && tempname[floor + 1][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "I")
+                                {
+                                    tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "v";
+                                    tempname[floor + 1][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "^";
+                                    Stairs[floor] = false;
+                                }
                             }
-                        }
-                        break;
-                    case 'i':
-                        inv.invUI(invs);
-                        break;
-                    case 'k':
-                        p1.Status(Pname);
-                        Console.ReadKey();
-                        break;
-                    case 'l':
-                        floor = tempname.Count + 1;
-                        break;
+                            break;
+                        case 'i':
+                            inv.invUI(invs);
+                            break;
+                        case 'k':
+                            p1.Status(Pname);
+                            Console.ReadKey();
+                            break;
+                        case 'l':
+                            floor = tempname.Count + 1;
+                            break;
+                        default:
+                            tryme = true;
+                            break;
+                    }
                 }
             }
             return tempname;
@@ -191,7 +196,7 @@ namespace Our_Game
                         {
                             wallcount[floor]++;
                         }
-                        
+
                         for (int i = 0; i < Mxy[floor].Count; i++)
                             if (Pxy != Exy && (int.Parse(Mxy[floor][i].Substring(0, 2)) == (int.Parse(Exy.Substring(0, 2)) - 1) && int.Parse(Mxy[floor][i].Substring(2, 2)) == int.Parse(Exy.Substring(2, 2))))
                                 detect = false;
@@ -274,7 +279,7 @@ namespace Our_Game
             }
             return Exy;
         }
-        
+
         private bool Combat(Player p1)
         {
             Mob m1 = new Mob();
@@ -283,7 +288,7 @@ namespace Our_Game
             Console.Clear();
             while (Mob.currHp >= 1 && p1.currHp >= 1)
             {
-                Console.WriteLine("                             A monster has appeared!\n");
+                Console.WriteLine("A monster has appeared!\n");
                 if (t == 1)
                 {
                     if (p1.currHp > 0)
@@ -323,12 +328,12 @@ namespace Our_Game
             Pxy = NPCxy;
             p2.currhp = p2.MaxHealth;
 
-        } 
+        }
         private void CombatScreen()
         {
             Console.ReadKey();
             Console.Clear();
         }
-      
+
     }
 }
