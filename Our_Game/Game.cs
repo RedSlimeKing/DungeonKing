@@ -92,6 +92,9 @@ namespace Our_Game
                     if (Mxy[floor][i] == Pxy)
                         if (Combat(p1) == true)
                             Mxy[floor].Remove(Pxy);
+                        else
+                            floor = 0;
+                            respawn(p1);
                 }
                 for (int i = 0; i < Mxy[floor].Count; i++)
                 {
@@ -313,10 +316,10 @@ namespace Our_Game
             }
             return true;
         }
-        private void respawn(Player p1,int floorR)
+        private void respawn(Player p2)
         {
-            floorR = 0;
             Pxy = NPCxy;
+            p2.currhp = p2.MaxHealth;
 
         } 
         private void CombatScreen()
