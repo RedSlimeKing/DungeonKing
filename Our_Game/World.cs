@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +21,6 @@ namespace Our_Game
              * ^: Stairs Up
              * v: Stairs Down
              * N: NPC
-             * M: Mob
              */
             string[,] world = new string[20, 20]
             {
@@ -70,7 +69,7 @@ namespace Our_Game
                     else if (temp == "O" || temp == "R" || temp == "I" || temp == "B")
                         temp = " ";
                     for (int p = 0; p < Mobsxy.Count; p++)
-                        if (row == int.Parse(Mobsxy[p].Substring(0, 2)) && col == int.Parse(Mobsxy[p].Substring(2, 2)))
+                        if (row == int.Parse(Mobsxy[p].Substring(0, 2)) && col == int.Parse(Mobsxy[p].Substring(2, 2)) && world[row, col] == "R")
                             temp = "M";
                     if (row == Py && col == Px)
                         temp = Name.Substring(0, 1);
