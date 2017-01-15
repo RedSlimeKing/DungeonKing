@@ -93,8 +93,10 @@ namespace Our_Game
                         if (Combat(p1) == true)
                             Mxy[floor].Remove(Pxy);
                         else
+                        {
                             floor = 0;
                             respawn(p1);
+                        }
                 }
                 for (int i = 0; i < Mxy[floor].Count; i++)
                 {
