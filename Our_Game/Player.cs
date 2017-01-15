@@ -49,23 +49,42 @@ namespace Our_Game
         //combat methods
         public void Combat(List<string[,]> Items)
         {
+            bool tryme = false;
             Console.WriteLine("What move would you like to do?");
             Console.WriteLine("1.Attack \n2.Defend \n3.Use potion");
-
-            ConsoleKeyInfo choice = Console.ReadKey();
-            def = 0;
-            switch (choice.KeyChar)
+            while (tryme == false)
             {
-                case '1':
-                    Attack(PDamage);
-                    break;
-                case '2':
-                    Defend();
-                    break;
-                case '3':
-                    UsePotion(Items);
-                    break;
+                ConsoleKeyInfo choice = Console.ReadKey();
+                if (choice.KeyChar == '1' || choice.KeyChar == '2' || choice.KeyChar == '3')
+                {
+                    Console.WriteLine("Test passed");//remove later
+                    
+                    def = 0;
+                    switch (choice.KeyChar)
+                    {
+                        case '1':
+                            Attack(PDamage);
+                            break;
+                        case '2':
+                            Defend();
+                            break;
+                        case '3':
+                            UsePotion(Items);
+                            break;
+                    }
+                    tryme = true;
+                }
+                else
+                {
+                    //nothing happens
+                    int currentLineCursor = Console.CursorTop;
+                    Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
+                    Console.SetCursorPosition(0, currentLineCursor);
+                    tryme = false;
+                }
             }
+           
+            
         }
         public void Attack(int damage)
         {

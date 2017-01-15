@@ -17,6 +17,7 @@ namespace Our_Game
         List<bool> Stairs = new List<bool>();                               //if you have stairs
         string Pxy;                                                         //Player cords
         int floori = 0;                                                     //what level the player is on
+        int turn;                                                           //prep for turnbase method
         string Pname;                                                       //Player's name
         Random rand = new Random();                                         //random generator
         //--------------------------------------------------------------------------------------------------------------------------------------
@@ -273,10 +274,9 @@ namespace Our_Game
             int t = rand.Next(1, 3);
 
             Console.Clear();
-            while (Mob.currHp >= 1 &&
-                p1.currHp >= 1)
+            while (Mob.currHp >= 1 && p1.currHp >= 1)
             {
-                Console.WriteLine("A monster has Appeared and threw up on you!\n");
+                Console.WriteLine("                             A monster has appeared!\n");
                 if (t == 1)
                 {
                     if (p1.currHp > 0)
@@ -290,7 +290,7 @@ namespace Our_Game
                 }
                 if (Mob.currHp <= 0)
                 {
-                    Console.WriteLine("Monster Defeated");
+                    Console.WriteLine("Monster was Defeated");
                     Console.ReadKey();
                 }
                 else
@@ -316,6 +316,9 @@ namespace Our_Game
             Console.ReadKey();
             Console.Clear();
         }
-        
+        private void TurnBase()
+        {
+
+        } 
     }
 }
