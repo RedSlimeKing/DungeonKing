@@ -95,21 +95,8 @@ namespace Our_Game
                         else
                         { floor = 0; respawn(p1); }
                 }
-                for (int i = 0; i < Mxy[floor].Count; i++)
-                {
-                    int chance = rand.Next(1, 101);
-                    int eAi = rand.Next(1, 5);
-
-                    if (chance <= 25) // probability of 25%
-                    {
-                        //mob moves
-                        Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
-                    }
-                    else
-                    {/* mob stays */}
-                }
                 if (tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "v" && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
-                    tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R"; 
+                    tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R";
                 bool tryme = true;
                 while (tryme == true)
                 {
@@ -124,6 +111,19 @@ namespace Our_Game
                     { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
                     Console.WriteLine("i: Open Inventory\t\t\t  w\nk: Status Menu\t\t\t\ta   d\n" + textB + "\t\t\t\t  s\n" + textA);
                     ConsoleKeyInfo choice = Console.ReadKey();
+                    for (int i = 0; i < Mxy[floor].Count; i++)
+                    {
+                        int chance = rand.Next(1, 101);
+                        int eAi = rand.Next(1, 5);
+
+                        if (chance <= 25) // probability of 25%
+                        {
+                            //mob moves
+                            Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
+                        }
+                        else
+                        {/* mob stays */}
+                    }
                     if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
                         RandMobSpawn();
                     if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
