@@ -69,7 +69,6 @@ namespace Our_Game
             Inventory inv = new Inventory();
             World bob = new World();
             Player p1 = new Player();
-            bool tryme = true;
             for (int floor = floori; floor < tempname.Count;)
             {
                 if (tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "v" || tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "^")
@@ -110,7 +109,8 @@ namespace Our_Game
                     {/* mob stays */}
                 }
                 if (tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "v" && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
-                    tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R";
+                    tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R"; 
+                bool tryme = true;
                 while (tryme == true)
                 {
                     tryme = false;
