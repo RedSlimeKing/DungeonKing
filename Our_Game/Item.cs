@@ -11,10 +11,13 @@ namespace Our_Game
         int id;
         int _cost;
         string _name;
+        string id_name;
+        string desc;
+        public bool equipable;
 
         public Item()
         {
-
+            equipable = false;
         }
 
         public int Id
@@ -22,11 +25,20 @@ namespace Our_Game
             get { return id; }
             set { id = value; }
         }
-
+        public string IdName
+        {
+            get { return id_name; }
+            set { id_name = value; }
+        }
         public string Name
         {
             get { return _name; }
             set { _name = value; }
+        }
+        public string Desc
+        {
+            get { return desc; }
+            set { desc = value; }
         }
         public int Cost
         {
@@ -41,7 +53,6 @@ namespace Our_Game
                 //sellable items
                 case 11:
                     Name = "Gold Coin";
-                    // Desc = "";
                     Cost = 1;
                     break;
                 case 12:

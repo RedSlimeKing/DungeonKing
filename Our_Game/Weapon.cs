@@ -12,7 +12,7 @@ namespace Our_Game
 
         public Weapon()
         {
-
+            equipable = true;
         }
 
         public int Damage

@@ -30,7 +30,7 @@ namespace Our_Game
         private List<string[,]> GameCreation()
         {
             Inventory inv = new Inventory();
-            invs.Add(inv.Gridsetup()); invs.Add(inv.Gridsetup()); invs.Add(inv.Gridsetup());//runs 3 times
+            invs.Add(inv.Gridsetup()); //invs.Add(inv.Gridsetup()); invs.Add(inv.Gridsetup());//runs 3 times
             List<string[,]> n3w = new List<string[,]>();
             World bob = new World();
             for (int i = 0; i < 20; i++)
