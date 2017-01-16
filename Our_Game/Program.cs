@@ -86,7 +86,7 @@ namespace Our_Game
                 for (int d = 1; d <= 32767; d++)
                 { }
         }
-        static bool IsDigitsOnly(string couldit)
+        public static bool IsDigitsOnly(string couldit)
         {
             foreach (char c in couldit)
             {

@@ -52,7 +52,7 @@ namespace Our_Game
             int tempPage = 0;
             int row = -1; int col = -1;
             int page = 0;
-            while (page < 4)
+            while (page < invs.Count)
             {
                 UI(invs, page);
                 Console.WriteLine("What would you like to do?\na: Change page,\nb: Move items,\nc: Read item description,\nd: Leave");
@@ -61,9 +61,9 @@ namespace Our_Game
                 {
                     UI(invs, page);
                     Console.WriteLine("What page?");
-                    string temp = Console.ReadLine();
-                    if (temp == "1" || temp == "2" || temp == "3")
-                        page = int.Parse(temp) - 1;
+                    ConsoleKeyInfo temp = Console.ReadKey();
+                    if (Program.IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) < invs.Count)
+                        page = int.Parse(temp.KeyChar.ToString()) - 1;
                 }
                 else if (choice.KeyChar == 'b')
                 {
