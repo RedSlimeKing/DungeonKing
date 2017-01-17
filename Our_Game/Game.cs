@@ -102,14 +102,14 @@ namespace Our_Game
                 {
                     tryme = false;
                     Console.Clear();
-                    Console.WriteLine("Floor " + (floor + 1));
+                    Console.WriteLine("        Floor " + (floor + 1) + "\t\t\t Health/Max Health:  " + p1.currHp + "/" + p1.MaxHealth);
                     temp[floor] = bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
                     string textA = "\t";
                     string textB = "l: Leave Game";
                     string TempText = "";
                     if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && Stairs[floor] == true && floor + 1 < tempname.Count)
                     { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
-                    Console.WriteLine("i: Open Inventory\t\t\t  w\nk: Status Menu\t\t\t\ta   d\n" + textB + "\t\t\t\t  s\n" + textA);
+                    Console.WriteLine("        i: Open Inventory\t\t\t  w\n        k: Status Menu\t\t\t\ta   d\n        " + textB + "\t\t\t\t  s\n        " + textA);
                     ConsoleKeyInfo choice = Console.ReadKey();
                     for (int i = 0; i < Mxy[floor].Count; i++)
                     {
@@ -150,7 +150,7 @@ namespace Our_Game
                                 Console.Clear();
                                 Console.WriteLine("Floor " + (floor + 1));
                                 bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
-                                Console.WriteLine("Are you sure you want to place the stairs here?\n\"y\" or \"n\"");
+                                Console.WriteLine("        Are you sure you want to place the stairs here?\n        \"y\" or \"n\"");
                                 if (Console.ReadKey().KeyChar == 'y' && tempname[floor + 1][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] == "I")
                                 {
                                     tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "v";

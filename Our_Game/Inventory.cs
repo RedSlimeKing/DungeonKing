@@ -34,10 +34,15 @@ namespace Our_Game
             {
                 for (int col = 0; col < grid.GetLength(1); col++)
                 {
+                    string temp1 = "        ";
                     string temp = grid[row, col];
                     if (temp == "0")
                         temp = " ";
-                    Console.Write(String.Format("{0} | ", temp));
+                    if (col == 0)
+                        temp1 += temp;
+                    else
+                        temp1 = temp;
+                    Console.Write(String.Format("{0} | ", temp1));
                 }
                 Console.WriteLine();
             }
@@ -55,12 +60,12 @@ namespace Our_Game
             while (page < invs.Count)
             {
                 UI(invs, page);
-                Console.WriteLine("What would you like to do?\na: Change page,\nb: Move items,\nc: Read item description,\nd: Leave");
+                Console.WriteLine("\n        What would you like to do?\n        a: Change page,\n        b: Move items,\n        c: Read item description,\n        d: Leave");
                 ConsoleKeyInfo choice = Console.ReadKey();
                 if (choice.KeyChar == 'a')
                 {
                     UI(invs, page);
-                    Console.WriteLine("What page?");
+                    Console.WriteLine("\n        What page?");
                     ConsoleKeyInfo temp = Console.ReadKey();
                     if (Program.IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) < invs.Count)
                         page = int.Parse(temp.KeyChar.ToString()) - 1;
@@ -84,7 +89,7 @@ namespace Our_Game
                     if (tempA == "0")
                         tempm = " of what you would like to move here";
                     TempM = tempm;
-                    Console.WriteLine("Type the column, followed by the row" + TempM + ".\nPlease seperate them by either a space or a \",\"");
+                    Console.WriteLine("\n        Type the column, followed by the row" + TempM + ".\n        Please seperate them by either a space or a \",\"");
                     string temp = Console.ReadLine().Replace(" ", "").Replace(",", "");
                     if (temp.Length == 2 &&
                        (temp.Substring(0, 1) == "1" || temp.Substring(0, 1) == "2" || temp.Substring(0, 1) == "3" || temp.Substring(0, 1) == "4" || temp.Substring(0, 1) == "5" ||
@@ -113,7 +118,7 @@ namespace Our_Game
                 else if (choice.KeyChar == 'c')
                 {
                     UI(invs, page);
-                    Console.WriteLine("Type the column, followed by the row of the item.\nPlease seperate them by either a space or a \",\"");
+                    Console.WriteLine("\n        Type the column, followed by the row of the item.\n        Please seperate them by either a space or a \",\"");
                 }
                 else if (choice.KeyChar == 'd')
                     page = 4;
@@ -123,7 +128,7 @@ namespace Our_Game
         private void UI(List<string[,]> invs, int page)
         {
             Console.Clear();
-            Console.WriteLine("Page " + (page + 1) + " / " + invs.Count());
+            Console.WriteLine("        Page " + (page + 1) + " / " + invs.Count() + "\n");
             invs[page] = InvDisplay(invs[page], page);
         }
     }

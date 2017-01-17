@@ -54,26 +54,31 @@ namespace Our_Game
             {
                 for (int col = 0; col < world.GetLength(1); col++)
                 {
-                    string temp = world[row, col];
-                    if (temp == "I")
+                    string temp2 = "        ";
+                    string temp1 = world[row, col];
+                    if (temp1 == "I")
                         NumOfI++;
-                    if ((temp == "I" || temp == "B") && (world[row + 1, col] == "R" || world[row - 1, col] == "R" || world[row, col + 1] == "R" || world[row, col - 1] == "R" ||
+                    if ((temp1 == "I" || temp1 == "B") && (world[row + 1, col] == "R" || world[row - 1, col] == "R" || world[row, col + 1] == "R" || world[row, col - 1] == "R" ||
                                                          world[row + 1, col] == "^" || world[row - 1, col] == "^" || world[row, col + 1] == "^" || world[row, col - 1] == "^" ||
                                                          world[row + 1, col] == "v" || world[row - 1, col] == "v" || world[row, col + 1] == "v" || world[row, col - 1] == "v"))
                     {
-                        if (temp == "I")
-                            temp = "+";
+                        if (temp1 == "I")
+                            temp1 = "+";
                         else
-                            temp = "X";
+                            temp1 = "X";
                     }
-                    else if (temp == "O" || temp == "R" || temp == "I" || temp == "B")
-                        temp = " ";
+                    else if (temp1 == "O" || temp1 == "R" || temp1 == "I" || temp1 == "B")
+                        temp1 = " ";
                     for (int p = 0; p < Mobsxy.Count; p++)
                         if (row == int.Parse(Mobsxy[p].Substring(0, 2)) && col == int.Parse(Mobsxy[p].Substring(2, 2)) && world[row, col] == "R")
-                            temp = "M";
+                            temp1 = "M";
                     if (row == Py && col == Px)
-                        temp = Name.Substring(0, 1);
-                    Console.Write(String.Format("{0} ", temp));
+                        temp1 = Name.Substring(0, 1);
+                    if (col == 0)
+                        temp2 += temp1;
+                    else
+                        temp2 = temp1;
+                    Console.Write(String.Format("{0} ", temp2));
                 }
                 Console.WriteLine();
             }
