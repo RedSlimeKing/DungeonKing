@@ -330,7 +330,7 @@ namespace Our_Game
         private int Visual(int floor)
         {
             Console.Clear();
-            Console.WriteLine("        Floor " + (floor + 1) + "\t\t\t Health/Max Health:  " + p1.currHp + "/" + p1.MaxHealth);
+            Console.WriteLine("        Floor " + (floor + 1) + "\t\t\t Health/Max Health:  " + p1.currHp + "/" + p1.MaxHealth + "\t\t\t Wallet: " + p1.Wallet);
             return bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
         }
     }

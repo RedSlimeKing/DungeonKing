@@ -13,12 +13,14 @@ namespace Our_Game
         string name;
         public int def;
         public int currhp;
+        public int _wallet;
 
         Weapon Weap = new Weapon();
         Equipment equip1 = new HeadGear(1), equip2 = new UpperBodyGear(1), equip3 = new LowerBodyGear(1), equip4 = new Accessory(1);
 
         public Player()
         {
+            _wallet = 0;
             dmg = 5;
             Weap.Arsenal("C Long Sword");
             maxhp += equip1.IHP + equip2.IHP + equip3.IHP + equip4.IHP;
@@ -31,7 +33,11 @@ namespace Our_Game
             get { return name; }
             set { name = value; }
         }
-
+        public int Wallet
+        {
+            get { return _wallet; }
+            set { _wallet = value; }
+        }
         public int MaxHealth
         {
             get { return maxhp; }
@@ -167,6 +173,8 @@ namespace Our_Game
             Console.WriteLine("|Upper Body Gear:         " + equip2.Name + " [ + " + equip2.IHP + " hp]");
             Console.WriteLine("|Lower Body Gear:         " + equip3.Name + " [ + " + equip3.IHP + " hp]");
             Console.WriteLine("|Accessory:               " + equip4.Name + " [ + " + equip4.IHP + " hp]");
+            Console.WriteLine("|                  ");
+            Console.WriteLine("|Wallet:                  " + Wallet);
         }
     }
 }
