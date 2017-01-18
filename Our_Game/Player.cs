@@ -8,7 +8,7 @@ namespace Our_Game
 {
     class Player
     {
-        static int dmg = 5;
+        static int dmg;
         int maxhp = 10;
         string name;
         public int def;
@@ -19,6 +19,7 @@ namespace Our_Game
 
         public Player()
         {
+            dmg = 5;
             Weap.Arsenal("C Long Sword");
             maxhp += equip1.IHP + equip2.IHP + equip3.IHP + equip4.IHP;
             currHp = MaxHealth;
