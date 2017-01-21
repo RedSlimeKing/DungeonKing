@@ -20,9 +20,9 @@ namespace Our_Game
         //int turn;                                                         //prep for turnbase method
         string Pname;                                                       //Player's name
         Random rand = new Random();                                         //random generator
-        Inventory inv = new Inventory();
-        World bob = new World();
-        Player p1 = new Player();
+        Inventory inv = new Inventory();                                    //Lazy 1
+        World bob = new World();                                            //Lazy 2
+        Player p1 = new Player();                                           //Lazy 3
         //--------------------------------------------------------------------------------------------------------------------------------------
         public Game(string pName)//constructor
         {
@@ -104,28 +104,7 @@ namespace Our_Game
                     if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && Stairs[floor] == true && floor + 1 < tempname.Count)
                     { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
                     Console.WriteLine("        i: Open Inventory\t\t\t  w\n        k: Status Menu\t\t\t\ta   d\n        " + textB + "\t\t\t\t  s\n        " + textA);
-                    Console.WriteLine(.05 * (temp[floor] + wallcount[floor]));
                     ConsoleKeyInfo choice = Console.ReadKey();
-                    for (int i = 0; i < Mxy[floor].Count; i++)
-                        {
-                            int chance = rand.Next(1, 101);
-                            int eAi = rand.Next(1, 5);
-
-                            if (chance <= 25) // probability of 25%
-                            {
-                                //mob moves
-                                Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
-                            }
-                            else
-                            {/* mob stays */
-                            }
-                        }
-                    if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
-                        RandMobSpawn();
-                    if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
-                        RandMobSpawn();
-                    if (wallcount[floor] >= .8 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 3 && rand.Next(1, 101) <= 30)
-                        RandMobSpawn();
                     switch (choice.KeyChar)
                     {
                         case 'w':
@@ -168,6 +147,28 @@ namespace Our_Game
                             break;
                     }
                 }
+                if (floor > tempname.Count)
+                    break;
+                for (int i = 0; i < Mxy[floor].Count; i++)
+                {
+                    int chance = rand.Next(1, 101);
+                    int eAi = rand.Next(1, 5);
+
+                    if (chance <= 25) // probability of 25%
+                    {
+                        //mob moves
+                        Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
+                    }
+                    else
+                    {/* mob stays */
+                    }
+                }
+                if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
+                    RandMobSpawn();
+                if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
+                    RandMobSpawn();
+                if (wallcount[floor] >= .8 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 3 && rand.Next(1, 101) <= 30)
+                    RandMobSpawn();
             }
             return tempname;
         }
