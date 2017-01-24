@@ -47,7 +47,7 @@ namespace Our_Game
             Random gen = new Random();
             int n1 = gen.Next(1, 101);
             int choice = gen.Next(1, 4);
-            if (n1 <= 30) // probability of 30%
+            if (n1 <= 10) // probability of 10%
                 choice = 4;
             else if (n1 >= 60) // probability of 40%
                 choice = 1;
