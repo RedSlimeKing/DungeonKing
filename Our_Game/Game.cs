@@ -23,6 +23,7 @@ namespace Our_Game
         Inventory inv = new Inventory();                                    //Lazy 1
         World bob = new World();                                            //Lazy 2
         Player p1 = new Player();                                           //Lazy 3
+        bool Mm = true; bool tryme = true;                                  //Lazy 4
         //--------------------------------------------------------------------------------------------------------------------------------------
         public Game(string pName)//constructor
         {
@@ -31,10 +32,8 @@ namespace Our_Game
         }
         private List<string[,]> GameCreation()//List Method to init game  //make's    inventory, world 
         {
-            Inventory inv = new Inventory();
             invs.Add(inv.Gridsetup()); //invs.Add(inv.Gridsetup()); invs.Add(inv.Gridsetup());//runs 3 times
             List<string[,]> n3w = new List<string[,]>();
-            World bob = new World();
             for (int i = 0; i < 20; i++)
                 n3w.Add(bob.WorldGeneration(rand));
             Pxy = bob.RandomLocation(n3w[0]);//makes player spawn on random location on floor 1 with npc near it
@@ -93,10 +92,6 @@ namespace Our_Game
                 }
                 if (tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "v" && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
                     tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "R";
-                bool tryme = true;
-                while (tryme == true)
-                {
-                    tryme = false;
                     temp[floor] = Visual(floor);
                     string textA = "\t";
                     string textB = "l: Leave Game";
@@ -104,6 +99,11 @@ namespace Our_Game
                     if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && Stairs[floor] == true && floor + 1 < tempname.Count)
                     { textA = "S: Place Stairs"; TempText = textA; textA = textB; textB = TempText; }
                     Console.WriteLine("        i: Open Inventory\t\t\t  w\n        k: Status Menu\t\t\t\ta   d\n        " + textB + "\t\t\t\t  s\n        " + textA);
+                tryme = true;
+                Mm = true;
+                while (tryme == true)
+                {
+                    tryme = false;
                     ConsoleKeyInfo choice = Console.ReadKey();
                     switch (choice.KeyChar)
                     {
@@ -131,44 +131,51 @@ namespace Our_Game
                                     Stairs[floor] = false;
                                 }
                             }
+                            Mm = false;
                             break;
                         case 'i':
                             inv.invUI(invs);
+                            Mm = false;
                             break;
                         case 'k':
                             p1.Status(Pname);
-                            Console.ReadKey();
+                            Console.ReadKey();                                 
+                            Mm = false;
                             break;
                         case 'l':
                             floor = tempname.Count + 1;
                             break;
                         default:
+                            Utility.Pretty();
                             tryme = true;
                             break;
                     }
                 }
                 if (floor > tempname.Count)
                     break;
-                for (int i = 0; i < Mxy[floor].Count; i++)
+                if (Mm == true)
                 {
-                    int chance = rand.Next(1, 101);
-                    int eAi = rand.Next(1, 5);
-
-                    if (chance <= 25) // probability of 25%
+                    for (int i = 0; i < Mxy[floor].Count; i++)
                     {
-                        //mob moves
-                        Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
+                        int chance = rand.Next(1, 101);
+                        int eAi = rand.Next(1, 5);
+
+                        if (chance <= 25) // probability of 25%
+                        {
+                            //mob moves
+                            Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
+                        }
+                        else
+                        {/* mob stays */
+                        }
                     }
-                    else
-                    {/* mob stays */
-                    }
+                    if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
+                        RandMobSpawn();
+                    if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
+                        RandMobSpawn();
+                    if (wallcount[floor] >= .8 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 3 && rand.Next(1, 101) <= 30)
+                        RandMobSpawn();
                 }
-                if (wallcount[floor] >= .05 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 1 && rand.Next(1, 101) <= 30)
-                    RandMobSpawn();
-                if (wallcount[floor] >= .35 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 2 && rand.Next(1, 101) <= 30)
-                    RandMobSpawn();
-                if (wallcount[floor] >= .8 * (temp[floor] + wallcount[floor]) && Mxy[floor].Count < 3 && rand.Next(1, 101) <= 30)
-                    RandMobSpawn();
             }
             return tempname;
         }
@@ -199,7 +206,9 @@ namespace Our_Game
                             break;
                         Exy = (int.Parse(Exy.Substring(0, 2)) - 1).ToString() + Exy.Substring(2, 2);
                     }
-                    if (Exy.Length == 3)
+                    else
+                    { Mm = false; tryme = true; Utility.Pretty(); }
+                        if (Exy.Length == 3)
                         Exy = "0" + Exy.Substring(0, 2) + (Exy.Substring(2, 1));
                     break;
                 case 2:
@@ -222,7 +231,9 @@ namespace Our_Game
                             break;
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) - 1).ToString();
                     }
-                    if (Exy.Length == 3)
+                    else
+                    { Mm = false; tryme = true; Utility.Pretty(); }
+                        if (Exy.Length == 3)
                         Exy = Exy.Substring(0, 2) + "0" + (Exy.Substring(2, 1));
                     break;
                 case 3:
@@ -245,7 +256,9 @@ namespace Our_Game
                             break;
                         Exy = (int.Parse(Exy.Substring(0, 2)) + 1).ToString() + Exy.Substring(2, 2);
                     }
-                    if (Exy.Length == 3)
+                    else
+                    { Mm = false; tryme = true; Utility.Pretty(); }
+                        if (Exy.Length == 3)
                         Exy = "0" + Exy.Substring(0, 2) + (Exy.Substring(2, 1));
                     break;
                 case 4:
@@ -268,6 +281,8 @@ namespace Our_Game
                             break;
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) + 1).ToString();
                     }
+                    else
+                    { Mm = false; tryme = true; }
                     if (Exy.Length == 3)
                         Exy = Exy.Substring(0, 2) + "0" + (Exy.Substring(2, 1));
                     break;
@@ -328,10 +343,10 @@ namespace Our_Game
             Console.ReadKey();
             Console.Clear();
         }
-        private int Visual(int floor)
+        private int Visual(int floor)//Half of what the user sees
         {
             Console.Clear();
-            Console.WriteLine("        Floor " + (floor + 1) + "\t\t\t Health/Max Health:  " + p1.currHp + "/" + p1.MaxHealth);
+            Console.WriteLine("        Floor " + (floor + 1) + "\t\t\t Health/Max Health:  " + p1.currHp + "/" + p1.MaxHealth + "\t\t\t Wallet: " + p1.Wallet);
             return bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);
         }
     }

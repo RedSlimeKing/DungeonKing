@@ -73,15 +73,28 @@ namespace Our_Game
         }
 
         public void Attack(int damage, Player p1)
-        {
-            if (p1.def == 1)
+        {   
+            Random rand = new Random();
+            int chance = rand.Next(1, 101);
+
+            Console.Clear();
+            if (chance <= 30) // probability of 30%
             {
-                //Player Blocks
-                Console.WriteLine("Blocked monster attack");
+                //attack miss
+                Console.WriteLine("Monster's attack missed!");
             }
             else
             {
-                p1.ReceiveDamage(damage);
+                if (p1.def == 1)
+                {
+                    //Player Blocks
+                    Console.WriteLine("Blocked monster attack");
+                }
+                else
+                {
+                    Console.WriteLine("Monster's attack hit!");
+                    p1.ReceiveDamage(damage);
+                }
             }
         }
 

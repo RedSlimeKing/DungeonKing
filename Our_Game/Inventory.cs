@@ -67,7 +67,7 @@ namespace Our_Game
                     UI(invs, page);
                     Console.WriteLine("\n        What page?");
                     ConsoleKeyInfo temp = Console.ReadKey();
-                    if (Program.IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) < invs.Count)
+                    if (Utility.IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) < invs.Count)
                         page = int.Parse(temp.KeyChar.ToString()) - 1;
                 }
                 else if (choice.KeyChar == 'b')

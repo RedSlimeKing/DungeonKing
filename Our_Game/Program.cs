@@ -42,7 +42,7 @@ namespace Our_Game
                         {
                             Console.Clear();
                             Console.WriteLine("You dont have any games started");
-                            Delay();
+                            Utility.Delay();
                             break;
                         }
                         while (i < 1)
@@ -58,7 +58,7 @@ namespace Our_Game
                                 for (int o = 0; o < world; o++)
                                     Console.WriteLine((o + 1) + ": " + UName[o]);
                                 ConsoleKeyInfo temp = Console.ReadKey();
-                                if (IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) <= files.Count)
+                                if (Utility.IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) <= files.Count)
                                 {
                                     files[int.Parse(temp.KeyChar.ToString()) - 1].UI();
                                     i++;
@@ -67,7 +67,7 @@ namespace Our_Game
                                 {
                                     Console.Clear();
                                     Console.WriteLine("That is an invalid option");
-                                    Delay();
+                                    Utility.Delay();
                                 }
                             }
                         }
@@ -79,22 +79,5 @@ namespace Our_Game
                 }
             }
         }
-        static void Delay()
-        {
-            //5 second delay
-            for (int c = 1; c <= 32767; c++)
-                for (int d = 1; d <= 32767; d++)
-                { }
-        }
-        public static bool IsDigitsOnly(string couldit)
-        {
-            foreach (char c in couldit)
-            {
-                if (c < '1' || c > '9')
-                    return false;
-            }
-            return true;
-        }
-
     }
 }

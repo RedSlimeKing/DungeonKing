@@ -55,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UpperBodyGear.cs" />
+    <Compile Include="Utility.cs" />
     <Compile Include="Weapon.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
