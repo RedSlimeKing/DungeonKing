@@ -282,7 +282,7 @@ namespace Our_Game
                         Exy = Exy.Substring(0, 2) + (int.Parse(Exy.Substring(2, 2)) + 1).ToString();
                     }
                     else
-                    { Mm = false; tryme = true; }
+                    { Mm = false; tryme = true; Utility.Pretty(); }
                     if (Exy.Length == 3)
                         Exy = Exy.Substring(0, 2) + "0" + (Exy.Substring(2, 1));
                     break;
