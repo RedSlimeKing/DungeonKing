@@ -120,7 +120,7 @@ namespace Our_Game
                             Pxy = movement(4, Pxy);
                             break;
                         case 'S':
-                            if (wallcount[floor] >= .6 && floor + 1 < tempname.Count && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
+                            if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && floor + 1 < tempname.Count && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
                             {
                                 Visual(floor);
                                 Console.WriteLine("        Are you sure you want to place the stairs here?\n        \"y\" or \"n\"");
