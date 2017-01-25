@@ -60,9 +60,12 @@ namespace Our_Game
             while (page < invs.Count)
             {
                 UI(invs, page);
-                Console.WriteLine("\n        What would you like to do?\n        a: Change page,\n        b: Move items,\n        c: Read item description,\n        d: Leave");
+                Console.WriteLine("\n        What would you like to do?");
+                if (invs.Count > 1)
+                    Console.WriteLine("\r        p: Change page,");
+                Console.WriteLine("\r        m: Move items,\n        k: Read item description,\n        l: Leave");
                 ConsoleKeyInfo choice = Console.ReadKey();
-                if (choice.KeyChar == 'a')
+                if (choice.KeyChar == 'p')
                 {
                     UI(invs, page);
                     Console.WriteLine("\n        What page?");
@@ -70,7 +73,7 @@ namespace Our_Game
                     if (Utility.IsDigitsOnly(temp.KeyChar.ToString()) == true && int.Parse(temp.KeyChar.ToString()) < invs.Count)
                         page = int.Parse(temp.KeyChar.ToString()) - 1;
                 }
-                else if (choice.KeyChar == 'b')
+                else if (choice.KeyChar == 'm')
                 {
                     if (tempnum == 2)
                     {
@@ -115,12 +118,12 @@ namespace Our_Game
                         tempnum++;
                     }
                 }
-                else if (choice.KeyChar == 'c')
+                else if (choice.KeyChar == 'k')
                 {
                     UI(invs, page);
                     Console.WriteLine("\n        Type the column, followed by the row of the item.\n        Please seperate them by either a space or a \",\"");
                 }
-                else if (choice.KeyChar == 'd')
+                else if (choice.KeyChar == 'l')
                     page = 4;
             }
             return invs;

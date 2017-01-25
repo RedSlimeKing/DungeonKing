@@ -32,7 +32,7 @@ namespace Our_Game
         }
         private List<string[,]> GameCreation()//List Method to init game  //make's    inventory, world 
         {
-            invs.Add(inv.Gridsetup()); //invs.Add(inv.Gridsetup()); invs.Add(inv.Gridsetup());//runs 3 times
+            invs.Add(inv.Gridsetup());//invs.Add(inv.Gridsetup()); invs.Add(inv.Gridsetup());//runs 1 time
             List<string[,]> n3w = new List<string[,]>();
             for (int i = 0; i < 20; i++)
                 n3w.Add(bob.WorldGeneration(rand));
