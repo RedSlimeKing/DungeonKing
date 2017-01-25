@@ -120,7 +120,7 @@ namespace Our_Game
                             Pxy = movement(4, Pxy);
                             break;
                         case 'S':
-                            if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && floor + 1 < tempname.Count && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^")
+                            if (wallcount[floor] >= .6 * (temp[floor] + wallcount[floor]) && floor + 1 < tempname.Count && tempname[floor][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] != "^" && Stairs[floor] == true)
                             {
                                 Visual(floor);
                                 Console.WriteLine("        Are you sure you want to place the stairs here?\n        \"y\" or \"n\"");
@@ -130,8 +130,9 @@ namespace Our_Game
                                     tempname[floor + 1][int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2))] = "^";
                                     Stairs[floor] = false;
                                 }
+                                else { Console.Clear(); Visual(floor); Console.WriteLine("        You can't seem to be able to place stairs, how odd?\n        Let's try another location"); Console.ReadKey(); }
                             }
-                            Mm = false;
+                            Mm = false; 
                             break;
                         case 'i':
                             inv.invUI(invs);
