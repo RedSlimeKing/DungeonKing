@@ -140,7 +140,6 @@ namespace Our_Game
                             break;
                         case 'k':
                             p1.Status(Pname);
-                            Console.ReadKey();                                 
                             Mm = false;
                             break;
                         case 'l':
@@ -296,15 +295,15 @@ namespace Our_Game
             int t = rand.Next(1, 3);
 
             Console.Clear();
+            Console.WriteLine("        A monster has appeared!\n");
             while (Mob.currHp >= 1 && p1.currHp >= 1)
             {
-                Console.WriteLine("A monster has appeared!\n");
                 if (t == 1)
                 {
                     if (p1.currHp > 0)
                     {
                         //player attacks
-                        Console.WriteLine("Player HP:" + p1.currHp);
+                        Console.WriteLine("        Player HP:" + p1.currHp);
                         p1.Combat(invs);
                         t++;
                         CombatScreen();
@@ -312,20 +311,20 @@ namespace Our_Game
                 }
                 if (Mob.currHp <= 0)
                 {
-                    Console.WriteLine("Monster was Defeated");
+                    Console.WriteLine("        Monster was Defeated");
                     Console.ReadKey();
                 }
                 else
                 {
                     // mob attack
-                    Console.WriteLine("Monster HP:" + Mob.currHp);
+                    Console.WriteLine("        Monster HP:" + Mob.currHp);
                     m1.Combat(p1);
                     t--;
                     CombatScreen();
                     if (p1.currHp <= 0)
                     {
-                        Console.WriteLine("Player HP:" + p1.currHp);
-                        Console.WriteLine("You Died buddy old pal");
+                        Console.WriteLine("        Player HP:" + p1.currHp);
+                        Console.WriteLine("        You Died buddy old pal");
                         Console.ReadKey();
                         return false;
                     }

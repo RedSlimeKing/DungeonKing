@@ -55,19 +55,19 @@ namespace Our_Game
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("Monster attacks");
+                    Console.WriteLine("        Monster attacks");
                     Attack(MDamage, p1);
                     break;
                 case 2:
-                    Console.WriteLine("Monster Defend");
+                    Console.WriteLine("        Monster Defend");
                     Defend();
                     break;
                 case 4:
-                    Console.WriteLine("Monster uses potion");
+                    Console.WriteLine("        Monster uses potion");
                     UsePotion();
                     break;
                 case 3:
-                    Console.WriteLine("Monster farted");
+                    Console.WriteLine("        Monster farted");
                     break;
             }
         }
@@ -81,18 +81,18 @@ namespace Our_Game
             if (chance <= 30) // probability of 30%
             {
                 //attack miss
-                Console.WriteLine("Monster's attack missed!");
+                Console.WriteLine("        Monster's attack missed!");
             }
             else
             {
                 if (p1.def == 1)
                 {
                     //Player Blocks
-                    Console.WriteLine("Blocked monster attack");
+                    Console.WriteLine("        Blocked monster attack");
                 }
                 else
                 {
-                    Console.WriteLine("Monster's attack hit!");
+                    Console.WriteLine("        Monster's attack hit!");
                     p1.ReceiveDamage(damage);
                 }
             }

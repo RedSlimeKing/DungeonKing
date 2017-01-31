@@ -57,8 +57,8 @@ namespace Our_Game
         public void Combat(List<string[,]> Items)
         {
             bool tryme = false;
-            Console.WriteLine("What move would you like to do?");
-            Console.WriteLine("1.Attack \n2.Defend \n3.Use potion");
+            Console.WriteLine("        What move would you like to do?");
+            Console.WriteLine("        1.Attack \n        2.Defend \n        3.Use potion");
             while (tryme == false)
             {
                 ConsoleKeyInfo choice = Console.ReadKey();
@@ -82,9 +82,7 @@ namespace Our_Game
                 else
                 {
                     //nothing happens
-                    int currentLineCursor = Console.CursorTop;
-                    Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
-                    Console.SetCursorPosition(0, currentLineCursor);
+                    Utility.Pretty();
                     tryme = false;
                 }
             }
@@ -100,19 +98,19 @@ namespace Our_Game
             if (chance <= 25) // probability of 25%
             {
                 //attack miss
-                Console.WriteLine("Attack missed!");
+                Console.WriteLine("        Attack missed!");
             }
             else
             {
                 if (Mob.def == 1)
                 {
                     //attack blocked
-                    Console.WriteLine("Attack was blocked!");
+                    Console.WriteLine("        Attack was blocked!");
                 }
                 else
                 {
                     //attack hits
-                    Console.WriteLine("Target hit!");
+                    Console.WriteLine("        Target hit!");
                     Mob.ReceiveDamage(damage);
                 }
 
@@ -121,7 +119,7 @@ namespace Our_Game
         public void Defend()
         {
             Console.Clear();
-            Console.WriteLine("You prepare to block!");
+            Console.WriteLine("        You prepare to block!");
             def++;
         }
         public void UsePotion(List<string[,]> Items)
@@ -143,7 +141,7 @@ namespace Our_Game
                         else if (row == Items[page].GetLength(0) - 1 && col == Items[page].GetLength(1) - 1 && page == Items.Count -1)
                         {
                             Console.Clear();
-                            Console.WriteLine("You dont have any potions!");
+                            Console.WriteLine("        You dont have any potions!");
                         }
             
         }
@@ -165,16 +163,22 @@ namespace Our_Game
                     Fireball
              */
             Console.Clear();
-            Console.WriteLine("|Name:                    " + name);
-            Console.WriteLine("|Health/Max Health:       " + currHp + "/" + MaxHealth);
-            Console.WriteLine("|Damage:                  " + PDamage);
-            Console.WriteLine("|Weapon:                  " + Weap.Name + " [ + " + Weap.Damage + " dmg]");
-            Console.WriteLine("|Head Gear:               " + equip1.Name + " [ + " + equip1.IHP + " hp]");
-            Console.WriteLine("|Upper Body Gear:         " + equip2.Name + " [ + " + equip2.IHP + " hp]");
-            Console.WriteLine("|Lower Body Gear:         " + equip3.Name + " [ + " + equip3.IHP + " hp]");
-            Console.WriteLine("|Accessory:               " + equip4.Name + " [ + " + equip4.IHP + " hp]");
-            Console.WriteLine("|                  ");
-            Console.WriteLine("|Wallet:                  " + Wallet);
+            Console.WriteLine("        |Name:                    " + name);
+            Console.WriteLine("        |Health/Max Health:       " + currHp + "/" + MaxHealth);
+            Console.WriteLine("        |Damage:                  " + PDamage);
+            Console.WriteLine("        |Weapon:                  " + Weap.Name + " [ + " + Weap.Damage + " dmg]");
+            Console.WriteLine("        |Head Gear:               " + equip1.Name + " [ + " + equip1.IHP + " hp]");
+            Console.WriteLine("        |Upper Body Gear:         " + equip2.Name + " [ + " + equip2.IHP + " hp]");
+            Console.WriteLine("        |Lower Body Gear:         " + equip3.Name + " [ + " + equip3.IHP + " hp]");
+            Console.WriteLine("        |Accessory:               " + equip4.Name + " [ + " + equip4.IHP + " hp]");
+            Console.WriteLine("        |Wallet:                  " + Wallet + "\n");
+            Console.WriteLine("        l: leave status menu");
+            bool bob = true;
+            while (bob == true)
+                if (Console.ReadKey().KeyChar == 'l')
+                    bob = false;
+                else
+                    Utility.Pretty();
         }
     }
 }
