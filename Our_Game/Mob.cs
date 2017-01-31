@@ -19,7 +19,7 @@ namespace Our_Game
         {
             
             dmg = 5;
-            currHp = 50;
+            currHp = 30;
             Potion = 5;
         }
 
