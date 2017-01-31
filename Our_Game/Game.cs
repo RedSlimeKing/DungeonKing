@@ -336,7 +336,7 @@ namespace Our_Game
         private void respawn(Player p2)
         {
             Pxy = NPCxy;
-            p2.currhp = p2.MaxHealth;
+            p2.currHp = p2.MaxHealth;
 
         }
         private void CombatScreen()
