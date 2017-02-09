@@ -52,68 +52,53 @@ namespace Our_Game
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("        Monster attacks");
-                    Attack(MDamage, p1);
+                    Attack(p1);                     //tries to attack
                     break;
                 case 2:
-                    Console.WriteLine("        Monster Defend");
-                    Defend();
+                    Defend();                       //Monster defends
                     break;
                 case 4:
-                    Console.WriteLine("        Monster uses potion");
-                    UsePotion();
+                    UsePotion();                    //trys to use potion
                     break;
                 case 3:
-                    Console.WriteLine("        Monster farted");
+                    Console.WriteLine("        The monster went idle");
                     break;
             }
         }
 
-        public void Attack(int damage, Player p1)
-        {   
+        public void Attack(Player p1) {   
             Random rand = new Random();
             int chance = rand.Next(1, 101);
-
-            Console.Clear();
-            if (chance <= 30) // probability of 30%
-            {
-                //attack miss
-                Console.WriteLine("        Monster's attack missed!");
+            Console.WriteLine("        Monster attacks");
+            if (chance <= 30) {                                                     // probability of 30%
+                Console.WriteLine("        The monster's attack missed!");          //attack miss
             }
-            else
-            {
-                if (p1.def == 1)
-                {
-                    //Player Blocks
-                    Console.WriteLine("        Blocked monster attack");
+            else {
+                if (p1.def == 1) {                                                  //Player Blocks
+                    Console.WriteLine("        The monster's attack was blocked");
                 }
-                else
-                {
-                    Console.WriteLine("        Monster's attack hit!");
-                    p1.ReceiveDamage(damage);
+                else {
+                    Console.WriteLine("        The monster landed it's attack");
+                    p1.ReceiveDamage(MDamage);
                 }
             }
         }
-
-        public void Defend()
-        {
+        public void Defend() {
+            Console.WriteLine("        The monster prepares to defend");
             def++;
         }
 
-        public static void ReceiveDamage(int amount)
-        {
+        public static void ReceiveDamage(int amount) {
             Mob.currHp -= amount;
         }
 
-        public void UsePotion()
-        {
-            if (Potion > 0)
-            {
+        public void UsePotion() {
+            if (Potion > 0) {
+                Console.WriteLine("        Monster uses potion [+ 20]");
                 currHp += 20;
                 Potion--;
             }
-            else
-            {
+            else {
                 Console.WriteLine("        Monster tried to use a potion but the it didn't have one");
                 Potion = 0;
             }

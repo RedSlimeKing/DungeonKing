@@ -10,7 +10,7 @@ namespace Our_Game
     {
         //global variables
         List<List<string>> Mxy = new List<List<string>>();                  //Monster Cords
-        List<string[,]> invs = new List<string[,]>();                       //Inventories
+        List<string[,]> invs = new List<string[,]>();                       //Inventory pages
         List<string[,]> tempname;                                           //The World
         List<int> wallcount = new List<int>();                              //How many blocks mined
         List<int> temp = new List<int>();                                   //blocks left to mine
@@ -160,9 +160,8 @@ namespace Our_Game
                         int chance = rand.Next(1, 101);
                         int eAi = rand.Next(1, 5);
 
-                        if (chance <= 25) // probability of 25%
+                        if (chance <= 25) // probability of 25% for mob to move
                         {
-                            //mob moves
                             Mxy[floor][i] = movement(eAi, Mxy[floor][i]);
                         }
                         else
@@ -296,29 +295,22 @@ namespace Our_Game
 
             Console.Clear();
             Console.WriteLine("        A monster has appeared!\n");
-            while (Mob.currHp >= 1 && p1.currHp >= 1)
-            {
-                if (t == 1)
-                {
-                    if (p1.currHp > 0)
-                    {
-                        //player attacks
+            while (Mob.currHp >= 1 && p1.currHp >= 1) {
+                if (t == 1) {
+                    if (p1.currHp > 0) {
                         Console.WriteLine("        Player HP:" + p1.currHp);
-                        p1.Combat(invs);
+                        p1.Combat(invs);                                        //player Combat phase
                         t++;
                         CombatScreen();
                     }
                 }
-                if (Mob.currHp <= 0)
-                {
+                if (Mob.currHp <= 0) {
                     Console.WriteLine("        Monster was Defeated");
                     Console.ReadKey();
                 }
-                else
-                {
-                    // mob attack
+                else {
                     Console.WriteLine("        Monster HP:" + Mob.currHp);
-                    m1.Combat(p1);
+                    m1.Combat(p1);                                               // mob Combat phase
                     t--;
                     CombatScreen();
                     if (p1.currHp <= 0)
@@ -332,19 +324,15 @@ namespace Our_Game
             }
             return true;
         }
-        private void respawn(Player p2)
-        {
+        private void respawn(Player p2) {
             Pxy = NPCxy;
             p2.currHp = p2.MaxHealth;
-
         }
-        private void CombatScreen()
-        {
+        private void CombatScreen() {
             Console.ReadKey();
             Console.Clear();
         }
-        private int Visual(int floor)//Half of what the user sees
-        {
+        private int Visual(int floor) {                                     //Half of what the user sees
             Console.Clear();
             Console.WriteLine("        Floor " + (floor + 1) + "\t\t\t Health/Max Health:  " + p1.currHp + "/" + p1.MaxHealth + "\t\t\t Wallet: " + p1.Wallet);
             return bob.UpdateWorld(tempname[floor], int.Parse(Pxy.Substring(0, 2)), int.Parse(Pxy.Substring(2, 2)), Pname, Mxy[floor]);

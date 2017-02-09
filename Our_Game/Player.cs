@@ -134,15 +134,28 @@ namespace Our_Game
                                 currHp += tempHp;
                             else
                                 currHp += 20;
-                            Items[page][row, col].Substring(Items[page][row, col].Length - 2, Items[page][row, col].Length - 1);
-                            break;
+                            string num = Items[page][row, col].Substring(Items[page][row, col].Length - 2, Items[page][row, col].Length - (Items[page][row, col].Length - 2));
+                            bool lowpot = false;
+                            if (num.Substring(0, 1) == " ")
+                            {
+                                lowpot = true;
+                            }
+                            int Num = int.Parse(num) - 1;
+                            string NUM = Num.ToString();
+                            if (lowpot == true)
+                                NUM = " " + NUM;
+                            Items[page][row, col].Replace(num, NUM);
+                            if (Num == 0)
+                                Items[page][row, col] = "0";
+                            row = Items[page].GetLength(0);
+                            col = Items[page].GetLength(1);
+                            page = Items.Count - 1;
                         }
                         else if (row == Items[page].GetLength(0) - 1 && col == Items[page].GetLength(1) - 1 && page == Items.Count -1)
                         {
                             Console.Clear();
                             Console.WriteLine("        You dont have any potions!");
                         }
-            
         }
         public void ReceiveDamage(int amount)
         {
@@ -153,10 +166,10 @@ namespace Our_Game
             /*
                 Player Name:        Kevin
                 Health/Max Health:  10/20
-                Damage:             20
-                Weapon:             Long Sword[+15 dmg]
-                Head Gear:          none[+0]
-                Body Gear:          Leather coat [+10 hp]
+                Damage:             20              
+                Weapon:             Long Sword      [+15 dmg]
+                Head Gear:          none            [+0]
+                Body Gear:          Leather coat    [+10 hp]
                 
                 *Magic*
                     Fireball
