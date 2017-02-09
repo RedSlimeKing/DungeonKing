@@ -12,17 +12,14 @@ namespace Our_Game
         string name;
         static int currhp;
         int Potion;
-        
         public static int def;
 
         public Mob()
         {
-            
             dmg = 5;
             currHp = 30;
-            Potion = 5;
+            Potion = 3;
         }
-
         public string Name
         {
             get { return name; }
@@ -117,6 +114,7 @@ namespace Our_Game
             }
             else
             {
+                Console.WriteLine("        Monster tried to use a potion but the it didn't have one");
                 Potion = 0;
             }
         }

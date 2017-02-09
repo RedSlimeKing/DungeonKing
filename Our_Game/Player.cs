@@ -68,7 +68,7 @@ namespace Our_Game
                     switch (choice.KeyChar)
                     {
                         case '1':
-                            Attack(PDamage);
+                            Attack();
                             break;
                         case '2':
                             Defend();
@@ -89,29 +89,29 @@ namespace Our_Game
            
             
         }
-        public void Attack(int damage)
+        public void Attack()
         {
             Random rand = new Random();
             int chance = rand.Next(1, 101);
 
             Console.Clear();
-            if (chance <= 25) // probability of 25%
+            if (chance <= 25) // probability of 25% missing     75% of hitting
             {
                 //attack miss
-                Console.WriteLine("        Attack missed!");
+                Console.WriteLine("       You failed to land your attack!");
             }
             else
             {
                 if (Mob.def == 1)
                 {
                     //attack blocked
-                    Console.WriteLine("        Attack was blocked!");
+                    Console.WriteLine("       You landed your attack however the monster blocked your attack!");
                 }
                 else
                 {
                     //attack hits
-                    Console.WriteLine("        Target hit!");
-                    Mob.ReceiveDamage(damage);
+                    Console.WriteLine("        You landed your attack. you did {0} damage to the enemy", PDamage);
+                    Mob.ReceiveDamage(PDamage);
                 }
 
             }
@@ -124,7 +124,6 @@ namespace Our_Game
         }
         public void UsePotion(List<string[,]> Items)
         {
-
             int tempHp = MaxHealth - currHp;
             for (int page = 0; page != Items.Count; page++)
                 for (int row = 1; row < Items[page].GetLength(0); row++)
